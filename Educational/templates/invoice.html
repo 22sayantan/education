@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Django HTMX Split Screen</title>
+    <script
+      src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"
+      integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .split-container {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+      }
+      .left-side {
+        flex: 1;
+        border: 1px solid #ccc;
+        padding: 20px;
+      }
+      .right-side {
+        flex: 1;
+        border: 1px solid #007bff;
+        padding: 20px;
+        background: #f0f8ff;
+      }
+
+      @media print {
+        *{
+          border: none;
+        }
+        /* Hide the entire left-side form and other buttons */
+        .left-side,
+        button,
+        h2 {
+          display: none !important;
+        }
+        /* Ensure the right side takes up the full page width for the printer */
+        .right-side {
+          border: none;
+          padding: 5px;
+        }
+        
+        .split-container{
+          width: 210mm;
+          height: 297mm;
+        }
+
+        #display-results .result-card{
+          border: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="split-container">
+      <!-- LEFT SIDE: FORM -->
+      <div class="left-side">
+        <h2>Input Data</h2>
+        <form
+          hx-post="{% url 'submit_form' %}"
+          hx-target="#display-results"
+          hx-on::after-request="this.reset()"
+        >
+          {% csrf_token %}
+          <fieldset>
+            <legend>Buyer Details</legend>
+            <label>Enter Name:</label>
+            <input type="text" name="user_name" required /><br>
+            <label>Enter Email:</label>
+            <input type="email" name="user_email" required /><br>
+            <label>Enter Phone:</label>
+            <input type="tel" name="user_phone" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" required />
+          </fieldset>
+          <fieldset>
+            <legend>product details</legend>
+            <label for="item">item</label>
+            <input type="text" name="item_name"><br>
+            <label for="qty">Quantity(gms/kg/units)</label>
+            <input type="number" name="Qty"><br>
+            <label for="price">price(per gm/kg/units)</label>
+            <input type="number" name="price"><br> 
+          </fieldset>
+          <button type="submit">Send to Right Side</button>
+        </form>
+      </div>
+
+      <!-- RIGHT SIDE: DISPLAY -->
+      <div class="right-side">
+        <h2>Results</h2>
+        <div>
+          <h3>Store Details</h3>
+          <p>MyStore</p>
+          <p>Deal with all kind of technical parts</p>
+          <p>kolaghat,purba medinipur,west bengal,india -- 721134</p>
+        </div>
+        <div id="display-results">
+          <!-- This specific div will be updated by HTMX -->
+          <p>Results will appear here...</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

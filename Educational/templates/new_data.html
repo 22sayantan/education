@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+
+    <style>
+      div {
+        display: flex;
+        align-items: center;
+      }
+      h3 {
+        color: #9d9d9d;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>upload a new Sheet file</h1>
+      <h3>{csv format only}</h3>
+    </div>
+    
+    <!-- templates/upload.html -->
+    <form
+      action="{% url 'new_data' %}"
+      method="post"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <input type="file" name="file" accept=".xlsx" required/>
+      <button type="submit">Upload File</button>
+    </form>
+
+    <div>
+      {{ df_table|safe }}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+* {
+  font-family: sans-serif;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+  width: 70%;
+  padding: 10px;
+  margin: 5px 0 15px 0;
+  border: none;
+  border-bottom: 1px solid #ccc;
+}
+
+
+.radio_grp {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+input[type="number"] {
+  width: fit-content;
+  padding: 5px;
+  margin: 5px 0 15px 0;
+  
+  border: 1px solid black;
+  border-radius: 5px;
+
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #87008f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

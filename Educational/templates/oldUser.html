@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>this is old user page</h1>
+    <section>
+      <table>
+        <thead>
+          <tr style="background-color: #ddd; font-weight: bold">
+            <th style="border: 1px solid black">sl</th>
+            <th style="border: 1px solid black">name</th>
+            <th style="border: 1px solid black">email</th>
+            <th style="border: 1px solid black">phone</th>
+            <th style="border: 1px solid black">location</th>
+            <th style="border: 1px solid black">religion</th>
+            <th style="border: 1px solid black">board</th>
+            <th style="border: 1px solid black">personal PC</th>
+            <th style="border: 1px solid black">personal Phone</th>
+            <th style="border: 1px solid black">del</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+          <tr>
+            <td style="border: 1px solid black">{{ row.0 }}</td>
+            <td style="border: 1px solid black">{{ row.1 }}</td>
+            <td style="border: 1px solid black">{{ row.2 }}</td>
+            <td style="border: 1px solid black">{{ row.3 }}</td>
+            <td style="border: 1px solid black">{{ row.4 }}</td>
+            <td style="border: 1px solid black">{{ row.5 }}</td>
+            <td style="border: 1px solid black">{{ row.6 }}</td>
+            <td style="border: 1px solid black">{{ row.7 }}</td>
+            <td style="border: 1px solid black">{{ row.8 }}</td>
+            <td style="border: 1px solid black">
+              <form method="post" id="delete-form-{{row.0}}">
+                {% csrf_token %}
+                <input type="hidden" name="delete_id" value="{{row.0}}" />
+                <button type="submit">del</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GST Invoice</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        font-size: 12px;
+        color: #333;
+        line-height: 1.4;
+      }
+      .invoice-box {
+        max-width: 210mm;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #eee;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid #333;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+      .company-info h2 {
+        margin: 0;
+        color: #0056b3;
+      }
+      .invoice-details {
+        text-align: right;
+      }
+      .billing-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .bill-to,
+      .ship-to {
+        width: 48%;
+      }
+      table {
+        width: 100%;
+        line-height: inherit;
+        text-align: left;
+        border-collapse: collapse;
+      }
+      table th {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        padding: 8px;
+      }
+      table td {
+        border: 1px solid #dee2e6;
+        padding: 8px;
+      }
+      .totals {
+        margin-top: 20px;
+        float: right;
+        width: 300px;
+      }
+      .totals table tr td {
+        border: none;
+        padding: 5px 0;
+      }
+      .totals table tr td:last-child {
+        text-align: right;
+        font-weight: bold;
+      }
+      .footer {
+        margin-top: 50px;
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+        font-size: 10px;
+      }
+      .stamp {
+        margin-top: 20px;
+        text-align: right;
+        font-weight: bold;
+      }
+
+      @media print {
+        .invoice-box {
+          box-shadow: none;
+          border: none;
+          width: 210mm;
+          height: 297mm;
+          margin: 0;
+          padding: 0;
+        }
+        .print-btn {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="invoice-box">
+      <div class="header">
+        <div class="company-info">
+          <h2>YOUR COMPANY NAME</h2>
+          <p>
+            123 Business Park, Sector 5, Kolkata<br />
+            West Bengal, India - 700001<br />
+            <strong>GSTIN: 19AAAAA0000A1Z5</strong>
+          </p>
+        </div>
+        <div class="invoice-details">
+          <h1>TAX INVOICE</h1>
+          <p>
+            Invoice No: #INV-2026-001<br />
+            Date: 14-Jan-2026<br />
+            Place of Supply: West Bengal (19)
+          </p>
+        </div>
+      </div>
+
+      <div class="billing-row">
+        <div class="bill-to">
+          <strong>Bill To:</strong><br />
+          Client Name Private Limited<br />
+          456 Corporate Avenue, Mumbai<br />
+          Maharashtra - 400001<br />
+          GSTIN: 27BBBBB0000B1Z2
+        </div>
+        <div class="ship-to">
+          <strong>Ship To:</strong><br />
+          Warehouse Alpha<br />
+          Bhiwandi, Thane District<br />
+          Maharashtra - 421302
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>HSN</th>
+            <th>Description</th>
+            <th>Qty</th>
+            <th>Rate</th>
+            <th>Amount</th>
+            <th>GST %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>8471</td>
+            <td>Laptop - High Performance Model X</td>
+            <td>2</td>
+            <td>50,000.00</td>
+            <td>1,00,000.00</td>
+            <td>18%</td>
+          </tr>
+          <tr>
+            <td>8518</td>
+            <td>Wireless Headphones</td>
+            <td>5</td>
+            <td>2,000.00</td>
+            <td>10,000.00</td>
+            <td>18%</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="totals">
+        <table>
+          <tr>
+            <td>Taxable Value:</td>
+            <td>₹ 1,10,000.00</td>
+          </tr>
+          <tr>
+            <td>CGST (9%):</td>
+            <td>₹ 9,900.00</td>
+          </tr>
+          <tr>
+            <td>SGST (9%):</td>
+            <td>₹ 9,900.00</td>
+          </tr>
+          <tr style="border-top: 2px solid #333">
+            <td><strong>Grand Total:</strong></td>
+            <td><strong>₹ 1,29,800.00</strong></td>
+          </tr>
+        </table>
+      </div>
+
+      <div style="clear: both"></div>
+
+      <div class="footer">
+        <p>
+          <strong>Bank Details:</strong> HDFC Bank | A/C: 50200012345678 | IFSC:
+          HDFC0001234
+        </p>
+        <p>
+          <strong>Terms:</strong> Please pay within 15 days. Goods once sold
+          will not be taken back.
+        </p>
+        <div class="stamp">
+          For YOUR COMPANY NAME<br /><br /><br />Authorised Signatory
+        </div>
+      </div>
+
+      <div class="print-btn">
+        <button onclick="window.print()">Print Invoice</button>
+      </div>
+    </div>
+  </body>
+</html>

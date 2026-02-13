@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2">
+    <title>New User</title>
+
+    <style>
+    </style>
+  </head>
+  <body>
+    <form action="/edu/newUser" method="POST">
+      {% csrf_token %}
+      <label for="user_name">Name</label> <br />
+      <input type="text" name="user_name" required /><br />
+      <label for="user_email">Email</label> <br />
+      <input type="email" name="user_email" required /><br />
+      <label for="user_phone">Phone</label> <br />
+      <input type="tel" name="user_phone" required /><br />
+      <label for="user_location">Location</label> <br />
+      <input type="tel" name="user_location" required /><br />
+      <label for="school">School</label> <br />
+      <input type="text" name="school" required /><br />
+      <label for="Religion">Religion</label> <br />
+      <input type="text" name="religion" required /><br />
+      <label for="board">Board : </label> <br />
+      <div class="radio_grp">
+        <input type="radio" name="board" id="board" value="CBSE"/>
+        <label for="">CBSE</label>
+        <br />
+        <input type="radio" name="board" id="board" value="ICSE"/>
+        <label for="">ICSE</label>
+        <br />
+        <input type="radio" name="board" id="board" value="WB Govt."/>
+        <label for="">WB Govt.</label>
+        <br />
+      </div>
+      <label for="personal_pc">Have you a personal Laptop/Desktop?</label><br />
+      <div class="radio_grp">
+        <input type="radio" name="personal_pc" id="own_pc" value="Laptop"/>
+        <label for="">Laptop</label>
+        <br />
+        <input type="radio" name="personal_pc" id="own_pc" value="Desktop"/>
+        <label for="">Desktop</label>
+        <br />
+        <input type="radio" name="personal_pc" id="own_pc" value="None"/>
+        <label for="">None</label>
+        <br />
+      </div>
+      <label for="personal_phn">do you have Personal Phone?</label> <br />
+      <div class="radio_grp">
+        <input type="radio" name="personal_phn" id="own_phn" value="Smart-phone"/>
+        <label for="">Smart-phone</label>
+        <br />
+        <input type="radio" name="personal_phn" id="own_phn" value="keypad-phone"/>
+        <label for="">keypad-phone</label>
+        <br />
+        <input type="radio" name="personal_phn" id="own_phn" value="None"/>
+        <label for="">None</label>
+        <br />
+      </div>
+      <button type="submit">submit</button>
+    </form>
+    <a href="/"><button>home</button></a>
+  </body>
+</html>

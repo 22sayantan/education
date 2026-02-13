@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2" />
+    <title>New Courses</title>
+  </head>
+  <body>
+    <form action="/new_courses" method="POST">
+      {% csrf_token %}
+      <label for="course_name">Course Name</label> <br />
+      <input type="text" name="course_name" required /><br />
+      <label for="course_time">Time (hr)</label> <br />
+      <input type="number" name="course_time" min = 1 max = 10 value=1 required /><br />
+      <label for="course_price">Price (₹)</label> <br />
+      <input type="number" name="course_price" min = 100.00 max = 10000.00 step=100.00 value=100 required /><br />
+      <button type="submit">submit</button>
+    </form>
+    <a href="/"><button>home</button></a>
+  </body>
+</html>

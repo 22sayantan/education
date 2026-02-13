@@ -1,0 +1,136 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Document</title>
+
+    <style>
+      body {
+        background-color: blanchedalmond;
+      }
+      .Question-paper {
+        width: 210mm;
+        margin: 50px auto;
+        background: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+      h3 {
+        margin-bottom: -5px;
+      }
+      .options {
+        width: 100%;
+        margin-left: 20px;
+      }
+      .print_btn {
+        margin-top: 2rem;
+      }
+
+      @media print {
+        .print_btn {
+          display: none;
+        }
+        .Question-paper {
+          width: 210mm;
+          height: 297mm;
+          margin: 2mm 2mm 2mm 2mm;
+          padding: 0;
+          border-radius: 0;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex ">
+      <div class="filter-area bg-white h-[12rem] w-fit p-4 rounded-[10px] sticky top-0 ml-2 border-2 border-gray-300">
+      <form action="">
+        <label for="standard">standard</label>
+        <select name="" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
+          <option value="">class 9</option>
+          <option value="">class 10</option>
+          <option value="">class 11</option>
+          <option value="">class 12</option>
+        </select>
+
+        <br>
+
+        <label for="subject">subject</label>
+        <select name="" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
+          <option value="">AI</option>
+          <option value="">ML</option>
+          <option value="">ICT</option>
+          <option value="">Office</option>
+          <option value="">Deep Learning</option>
+          <option value="">Math</option>
+          <option value="">DSA</option>
+          <option value="">Networking</option>
+          <option value="">OS</option>
+          <option value="">DBMS</option>
+          <option value="">Python</option>
+        </select>
+
+        <br>
+
+        <label for="">Level</label>
+        <select name="" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
+          <option value="">Easy</option>
+          <option value="">Midium</option>
+          <option value="">Hard</option>
+        </select>
+
+        <br>
+
+        <center>
+          <button type="submit" class="cursor-pointer bg-green-500 p-2 text-white font-bold rounded-[4px]">show</button>
+        </center>
+
+        <br>
+
+      </form>
+    </div>
+    <div class="Question-paper">
+      <p class="text-right">Date: {{date}}</p>
+      <center>
+        <p class="text-2xl font-bold">Mock-Test</p>
+      </center>
+      <hr>
+      <p class="font-bold text-xl text-[darkblue]">Mark (✔️) on correct ans --></h2>
+      <div class="ml-[1.5rem] mr-[2.5rem]">
+        {% for Ques in queses %}
+        <p class="text-l font-bold">{{forloop.counter}}) {{Ques.1}}</p>
+        <div class="options grid grid-cols-2 gap-2">
+          <p>a) {{ Ques.2 }}</p>
+          <p>b) {{ Ques.3 }}</p>
+          <p>c) {{ Ques.4 }}</p>
+          <p>d) {{ Ques.5 }}</p>
+        </div>
+        {% endfor %}
+      </div>
+      <hr>
+      <h2 class="font-bold text-xl text-[darkblue]">Mark True/False for the following Statements: </h2>
+      <div>
+        {% for stmt in stmts %}
+        <p>{{stmt}}</p>
+        {% endfor %}
+      </div>
+      <hr>
+      <div>
+        <h2 class="font-bold text-xl text-[darkblue]">Answer for long questions:</h2>
+        {% for lq in longques %}
+        <p class="ml-4 font-bold">{{forloop.counter}}) {{lq.1}} [{{lq.2}} , {{ lq.3 }}]</p>
+        {% endfor %}
+      </div>
+
+      <div class="print_btn">
+        <button onclick="window.print()" class="w-16 h-10 rounded-xl cursor-pointer bg-[cyan]">Print</button>
+      </div>
+    </div>
+    </div>
+  </body>
+</html>

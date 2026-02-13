@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <link rel="stylesheet" href="{% static 'css/style.css' %}?v=2">
+    <title>Document</title>
+
+  </head>
+  <body>
+    <h1>New Questions</h1>
+    <div>
+      <form action="" method="post">
+        {% csrf_token %}
+        <div class="Qtypeopt radio_grp">
+          <label for="Qtype"><b>Select Question Type:</b></label>
+          <input type="radio" name="Qtype" id="Qtype" value="mcq" />
+          <label for="mcq">MCQ</label>
+          <input type="radio" name="Qtype" id="Qtype" value="true-false" />
+          <label for="true-false">True/False</label>
+          <input type="radio" name="Qtype" id="Qtype" value="question" checked />
+          <label for="Question">Ques</label>
+        </div>
+
+        <div class="qip">
+          <label for="ques"><b>Question:</b>&emsp;</label><br />
+          <input type="text" id="ques" name="ques" /><br />
+        </div>
+
+        <div class="ans1">
+          <label for="ans1"><b>Answer 1:</b>&emsp;</label><br />
+          <input type="text" id="ans1" name="ans1" /><br />
+        </div>
+
+        <div class="ans2">
+          <label for="ans2"><b>Answer 2:</b>&emsp;</label><br />
+          <input type="text" id="ans2" name="ans2" /><br />
+        </div>
+
+        <div class="ans3">
+          <label for="ans3"><b>Answer 3:</b>&emsp;</label><br />
+          <input type="text" id="ans3" name="ans3" /><br />
+        </div>
+
+        <div class="ans4">
+          <label for="ans4"><b>Answer 4:</b>&emsp;</label><br />
+          <input type="text" id="ans4" name="ans4" /><br />
+        </div>
+
+        <div class="crrctans">
+          <label for="correct"><b>Correct Answer:</b>&emsp;</label><br />
+          <input type="number" id="correct" name="correct" min="1" max="4" />
+          <div class="true-false radio_grp">
+            <input type="radio" id="is_true_false" name="is_true_false" />
+            <label for="is_true_false">True</label>
+            <input type="radio" id="is_true_false" name="is_true_false" />
+            <label for="is_true_false">False</label>
+          </div>
+        </div>
+        
+        <label for="marks" id="marks_label">marks</label>
+        <input
+          type="number"
+          id="marks"
+          name="marks"
+          min="1"
+          max="3"
+          value="1"
+        /><br /><br />
+        <div>
+          <label for="" >subject</label>
+          <input type="text" name="subject">
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      const qtypeOptions = document.getElementsByName("Qtype");
+      const ans1Div = document.querySelector(".ans1");
+      const ans2Div = document.querySelector(".ans2");
+      const ans3Div = document.querySelector(".ans3");
+      const ans4Div = document.querySelector(".ans4");
+      const correctAnsInput = document.getElementById("correct");
+      const correctAnsDiv = document.querySelector(".crrctans");
+      const trueFalseDiv = document.querySelector(".true-false");
+
+      function updateForm() {
+        let selectedType;
+        for (const option of qtypeOptions) {
+          if (option.checked) {
+            selectedType = option.value;
+            break;
+          }
+        }
+
+        if (selectedType === "mcq") {
+          ans1Div.style.display = "block";
+          ans2Div.style.display = "block";
+          ans3Div.style.display = "block";
+          ans4Div.style.display = "block";
+          if (correctAnsDiv.style.display === "none") {
+            correctAnsDiv.style.display = "block";
+          }
+          correctAnsInput.style.display = "block";
+          trueFalseDiv.style.display = "none";
+        } else if (selectedType === "true-false") {
+          ans1Div.style.display = "none";
+          ans2Div.style.display = "none";
+          ans3Div.style.display = "none";
+          ans4Div.style.display = "none";
+          correctAnsInput.style.display = "none";
+          correctAnsDiv.style.display = "block";
+          if (trueFalseDiv.style.display === "none") {
+            trueFalseDiv.style.display = "block";
+          }
+        } else if (selectedType === "question") {
+          ans1Div.style.display = "none";
+          ans2Div.style.display = "none";
+          ans3Div.style.display = "none";
+          ans4Div.style.display = "none";
+          correctAnsDiv.style.display = "none";
+          trueFalseDiv.style.display = "none";
+        }
+      }
+
+      for (const option of qtypeOptions) {
+        option.addEventListener("change", updateForm);
+      }
+
+      // Initialize form on page load
+      updateForm();
+    </script>
+  </body>
+</html>

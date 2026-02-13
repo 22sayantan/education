@@ -1,0 +1,44 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>Document</title>
+  </head>
+  <body>
+    <center>
+      <h1 class="text-[2rem] font-bold ">courses</h1>
+    </center>
+    <section class="m-4 p-4 grid grid-cols-4 gap-y-24">
+      {% for course in courses %}
+      <div class="p-4 ml-4 border-1 border-black rounded-xl shadow-md">
+        <div class="flex justify-between mb-4">
+          <h4
+            class="text-2xl font-bold text-white bg-black p-2 w-12 rounded-full text-center"
+          >
+            {{course.0}}
+          </h4>
+          <h2 class="text-[1.4rem] font-bold">{{course.1}}</h2>
+        </div>
+        <div class="flex justify-between items-center">
+          <h4 class="flex jsutify-center items-center">
+            <span class="text-[2rem]"> ⏱️ </span>
+            <span
+              class="bg-gray-200 p-1 w-18 rounded-xl text-center font-bold shadow-md outline-1 outline-gray-400"
+              >{{course.2}} hr</span
+            >
+          </h4>
+          <h4
+            class="bg-black text-white font-bold text-center p-1 m-2 w-24 rounded-xl cursor-pointer"
+          >
+            ₹ {{course.3|floatformat:2}}
+          </h4>
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+  </body>
+</html>
