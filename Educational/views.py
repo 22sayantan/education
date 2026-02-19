@@ -107,7 +107,7 @@ def mockTest(request):
                 cursor.execute("WITH ordered AS ( SELECT id, ROW_NUMBER() OVER (ORDER BY id) AS rn FROM Educational_mcq ) UPDATE Educational_mcq SET id = ( SELECT rn FROM ordered WHERE ordered.id = Educational_mcq.id );")
                 cursor.execute("DELETE FROM sqlite_sequence WHERE name='Educational_mcq';")
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * from Educational_mcq order by random() limit 15;")
+        cursor.execute("SELECT * from Educational_mcq order by random() limit 20;")
         queses = cursor.fetchall()
         cursor.close()
     with connection.cursor() as cursor:
@@ -115,7 +115,7 @@ def mockTest(request):
         T_F_queses = cursor.fetchall()
         cursor.close()
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * from Educational_longques order by random() limit 5;")
+        cursor.execute("SELECT * from Educational_longques order by random() limit 1;")
         longques = cursor.fetchall()
         cursor.close()
         
@@ -168,4 +168,5 @@ def submit_form(request):
         # Return ONLY the small partial file
         return render(request, 'results_partial.html', context)
     # Fallback for non-HTMX requests (optional but good practice)
+
     return render(request, 'invoice.html')
