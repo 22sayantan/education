@@ -105,10 +105,10 @@
         {% for Ques in queses %}
         <p class="text-l font-bold">{{forloop.counter}}) {{Ques.1}}</p>
         <div class="options grid grid-cols-2 gap-2">
-          <p>a) {{ Ques.2 }}</p>
-          <p>b) {{ Ques.3 }}</p>
-          <p>c) {{ Ques.4 }}</p>
-          <p>d) {{ Ques.5 }}</p>
+          <p>{{ Ques.2 }}</p>
+          <p>{{ Ques.3 }}</p>
+          <p>{{ Ques.4 }}</p>
+          <p>{{ Ques.5 }}</p>
         </div>
         {% endfor %}
       </div>
@@ -134,3 +134,4 @@
     </div>
   </body>
 </html>
+
