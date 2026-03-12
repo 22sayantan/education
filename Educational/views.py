@@ -100,60 +100,7 @@ def mockTest(request):
     selected_value = None
     today = date.today()
     today = today.strftime("%d/%m/%Y")
-<<<<<<< HEAD
-
-=======
-    if request.method == 'POST':
-        selected_sub = request.POST.get('drop-down-value-sub')
-        # selected_level = request.POST.get('drop-down-value-level')
-        print(selected_sub)
-        '''
-        del_id = request.POST.get('delete_id')
-        if del_id:
-            with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM Educational_mcq WHERE id = %s",[del_id])
-                cursor.execute("WITH ordered AS ( SELECT id, ROW_NUMBER() OVER (ORDER BY id) AS rn FROM Educational_mcq ) UPDATE Educational_mcq SET id = ( SELECT rn FROM ordered WHERE ordered.id = Educational_mcq.id );")
-                cursor.execute("DELETE FROM sqlite_sequence WHERE name='Educational_mcq';")
-        '''
-
-        context = {
-        'selected_value': selected_value,
-        }
-
-    else:
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT * from Educational_mcq order by random() limit 8;")
-            queses = cursor.fetchall()
-            cursor.close()
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT * from Educational_true_false order by random() limit 5;")
-            T_F_queses = cursor.fetchall()
-            cursor.close()
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT * from Educational_longques order by random() limit 1;")
-            longques = cursor.fetchall()
-            cursor.close()
-            
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT distinct subject from Educational_mcq;")
-            subjects=cursor.fetchall()
-            cursor.close()
-=======
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * from Educational_mcq order by random() limit 20;")
-        queses = cursor.fetchall()
-        cursor.close()
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * from Educational_true_false order by random() limit 5;")
-        T_F_queses = cursor.fetchall()
-        cursor.close()
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * from Educational_longques order by random() limit 1;")
-        longques = cursor.fetchall()
-        cursor.close()
->>>>>>> 5fb9b8c3586675d1daa1ba6a8a857edb14d926b6
         
-<<<<<<< HEAD
     if request.method == 'POST':
         subject = request.POST.get('subject')
         print(subject)
@@ -171,9 +118,6 @@ def mockTest(request):
     else:
         print('nothing')
         return render(request,'mockTest.html',{'queses' : queses,'stmts':T_F_queses,'longques':longques,'date':today})
-=======
-    return render(request,'mockTest.html',{'queses' : queses,'stmts':T_F_queses,'longques':longques,'date':today,'subjects':subjects})
->>>>>>> 536e53937c91fc8d3477884691ca746421d8b55c
 
 def courses(request):
     with connection.cursor() as cursor:
