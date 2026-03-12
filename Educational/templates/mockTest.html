@@ -55,8 +55,7 @@
   <body>
     <div class="flex ">
       <div class="filter-area bg-white h-[12rem] w-fit p-4 rounded-[10px] sticky top-0 ml-2 border-2 border-gray-300">
-      <form action="" method="post">
-        {% csrf_token %}
+      <form action="">
         <label for="standard">standard</label>
         <select name="" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
           <option value="">class 9</option>
@@ -68,10 +67,18 @@
         <br>
 
         <label for="subject">subject</label>
-        <select name="drop-down-value-sub" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
-        {% for sub in subjects %}
-          <option>{{sub.0}}</option>
-        {% endfor %}
+        <select name="" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
+          <option value="">AI</option>
+          <option value="">ML</option>
+          <option value="">ICT</option>
+          <option value="">Office</option>
+          <option value="">Deep Learning</option>
+          <option value="">Math</option>
+          <option value="">DSA</option>
+          <option value="">Networking</option>
+          <option value="">OS</option>
+          <option value="">DBMS</option>
+          <option value="">Python</option>
         </select>
 
         <br>

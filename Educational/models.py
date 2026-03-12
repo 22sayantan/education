@@ -13,12 +13,12 @@ class Users(models.Model):
     personal_phn = models.CharField(max_length=100)
 
 class MCQ(models.Model):
-    ques = models.CharField(max_length=200)
-    opt_1 = models.CharField(max_length=120)
-    opt_2 = models.CharField(max_length=120)
-    opt_3 = models.CharField(max_length=120)
-    opt_4 = models.CharField(max_length=120)
-    ans = models.IntegerField()
+    Question = models.CharField(max_length=200)
+    Option_1 = models.CharField(max_length=120)
+    Option_2 = models.CharField(max_length=120)
+    Option_3 = models.CharField(max_length=120)
+    Option_4 = models.CharField(max_length=120)
+    Answers = models.IntegerField()
     marks = models.IntegerField()
     subject = models.CharField(max_length=50)
 
