@@ -111,7 +111,6 @@ def mockTest(request):
                 cursor.execute("DELETE FROM Educational_mcq WHERE id = %s",[del_id])
                 cursor.execute("WITH ordered AS ( SELECT id, ROW_NUMBER() OVER (ORDER BY id) AS rn FROM Educational_mcq ) UPDATE Educational_mcq SET id = ( SELECT rn FROM ordered WHERE ordered.id = Educational_mcq.id );")
                 cursor.execute("DELETE FROM sqlite_sequence WHERE name='Educational_mcq';")
-<<<<<<< HEAD
         '''
 
         context = {
@@ -136,20 +135,6 @@ def mockTest(request):
             cursor.execute("SELECT distinct subject from Educational_mcq;")
             subjects=cursor.fetchall()
             cursor.close()
-=======
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * from Educational_mcq order by random() limit 20;")
-        queses = cursor.fetchall()
-        cursor.close()
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * from Educational_true_false order by random() limit 5;")
-        T_F_queses = cursor.fetchall()
-        cursor.close()
-    with connection.cursor() as cursor:
-        cursor.execute("SELECT * from Educational_longques order by random() limit 1;")
-        longques = cursor.fetchall()
-        cursor.close()
->>>>>>> 5fb9b8c3586675d1daa1ba6a8a857edb14d926b6
         
     return render(request,'mockTest.html',{'queses' : queses,'stmts':T_F_queses,'longques':longques,'date':today,'subjects':subjects})
 
