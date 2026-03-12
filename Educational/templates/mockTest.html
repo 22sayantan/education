@@ -34,14 +34,20 @@
       @media print {
         .print_btn {
           display: none;
+          border: 1px solid red;
         }
         .Question-paper {
-          width: 210mm;
-          height: 297mm;
-          margin: 2mm 2mm 2mm 2mm;
+          width: 206mm;
+          height: 275mm;
+          margin: 0;
           padding: 0;
           border-radius: 0;
           box-shadow: none;
+          border: 1px solid blue;
+        }
+        .filter-area{
+          display: none;
+          border: 1px solid green;
         }
       }
     </style>
@@ -49,8 +55,7 @@
   <body>
     <div class="flex ">
       <div class="filter-area bg-white h-[12rem] w-fit p-4 rounded-[10px] sticky top-0 ml-2 border-2 border-gray-300">
-        <form action="" method="POST">
-        {% csrf_token %}
+      <form action="">
         <label for="standard">standard</label>
         <select name="" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
           <option value="">class 9</option>
@@ -62,27 +67,27 @@
         <br>
 
         <label for="subject">subject</label>
-        <select name="subject" id="subject" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
-          <option value="AI">AI</option>
-          <option value="ML">ML</option>
-          <option value="ICT">ICT</option>
-          <option value="Office">Office</option>
-          <option value="Deep Learning">Deep Learning</option>
-          <option value="Math">Math</option>
-          <option value="DSA">DSA</option>
-          <option value="Networking">Networking</option>
-          <option value="OS">OS</option>
-          <option value="DBMS">DBMS</option>
-          <option value="Python">Python</option>
+        <select name="" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
+          <option value="">AI</option>
+          <option value="">ML</option>
+          <option value="">ICT</option>
+          <option value="">Office</option>
+          <option value="">Deep Learning</option>
+          <option value="">Math</option>
+          <option value="">DSA</option>
+          <option value="">Networking</option>
+          <option value="">OS</option>
+          <option value="">DBMS</option>
+          <option value="">Python</option>
         </select>
 
         <br>
 
         <label for="">Level</label>
-        <select name="" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
-          <option value="">Easy</option>
-          <option value="">Midium</option>
-          <option value="">Hard</option>
+        <select name="drop-down-value-level" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
+          <option value="easy">Easy</option>
+          <option value="mid">Midium</option>
+          <option value="hard">Hard</option>
         </select>
 
         <br>
