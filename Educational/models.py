@@ -23,13 +23,13 @@ class MCQ(models.Model):
     subject = models.CharField(max_length=50)
 
 class True_False(models.Model):
-    ques = models.CharField(max_length=200)
+    Question = models.CharField(max_length=200)
     ans = models.IntegerField()
     marks = models.IntegerField()
     subject = models.CharField(max_length=50)
 
 class LongQues(models.Model):
-    ques = models.CharField(max_length=200)
+    Question = models.CharField(max_length=200)
     marks = models.IntegerField()
     subject = models.CharField(max_length=50)
 

@@ -6,6 +6,8 @@ from django.db import connection
 from .models import Users,MCQ,Courses,True_False,LongQues
 from datetime import date,datetime
 import random
+from django.forms.models import model_to_dict
+
 
 # Create your views here.
 def index(request):
@@ -122,12 +124,19 @@ def mockTest(request):
     
     if request.method == 'POST':
         selected_sub = request.POST.get('drop-down-value-sub')
+        print(selected_sub)
         filtered_ques = list(MCQ.objects.filter(subject=selected_sub))
-        # print(type(filtered_ques))
-        random_items = random.sample(filtered_ques,10)
-        for item in random_items:
-            print((item.Question))
+        print(len(filtered_ques))
 
+        random_items = random.sample(filtered_ques,8)
+        print(random_items)
+        ques_data = []
+        for item in random_items:
+            item_dict = model_to_dict(item)
+            item_tuple = tuple(item_dict.values())
+            ques_data.append(item_tuple)
+            # print(item_tuple)
+        print(ques_data)
         '''
         del_id = request.POST.get('delete_id')
         if del_id:
@@ -143,6 +152,7 @@ def mockTest(request):
 
         return render(request,'mockTest.html',{'queses' : queses,'stmts':T_F_queses,'longques':longques,'date':today,'subjects':subjects})
     else:
+        # print(queses)
         return render(request,'mockTest.html',{'queses' : queses,'stmts':T_F_queses,'longques':longques,'date':today,'subjects':subjects})
 
 def courses(request):
