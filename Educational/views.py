@@ -5,6 +5,7 @@ from .forms import UploadFileForm
 from django.db import connection
 from .models import Users,MCQ,Courses,True_False,LongQues
 from datetime import date,datetime
+import random
 
 # Create your views here.
 def index(request):
@@ -101,10 +102,32 @@ def mockTest(request):
     today = date.today()
     today = today.strftime("%d/%m/%Y")
         
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * from Educational_mcq order by random() limit 8;")
+        queses = cursor.fetchall()
+        cursor.close()
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * from Educational_true_false order by random() limit 5;")
+        T_F_queses = cursor.fetchall()
+        cursor.close()
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * from Educational_longques order by random() limit 1;")
+        longques = cursor.fetchall()
+        cursor.close()
+        
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT distinct subject from Educational_mcq;")
+        subjects=cursor.fetchall()
+        cursor.close()
+    
     if request.method == 'POST':
         selected_sub = request.POST.get('drop-down-value-sub')
-        # selected_level = request.POST.get('drop-down-value-level')
-        print(selected_sub)
+        filtered_ques = list(MCQ.objects.filter(subject=selected_sub))
+        # print(type(filtered_ques))
+        random_items = random.sample(filtered_ques,10)
+        for item in random_items:
+            print((item.Question))
+
         '''
         del_id = request.POST.get('delete_id')
         if del_id:
@@ -118,26 +141,9 @@ def mockTest(request):
         'selected_value': selected_value,
         }
 
+        return render(request,'mockTest.html',{'queses' : queses,'stmts':T_F_queses,'longques':longques,'date':today,'subjects':subjects})
     else:
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT * from Educational_mcq order by random() limit 8;")
-            queses = cursor.fetchall()
-            cursor.close()
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT * from Educational_true_false order by random() limit 5;")
-            T_F_queses = cursor.fetchall()
-            cursor.close()
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT * from Educational_longques order by random() limit 1;")
-            longques = cursor.fetchall()
-            cursor.close()
-            
-        with connection.cursor() as cursor:
-            cursor.execute("SELECT distinct subject from Educational_mcq;")
-            subjects=cursor.fetchall()
-            cursor.close()
-        
-    return render(request,'mockTest.html',{'queses' : queses,'stmts':T_F_queses,'longques':longques,'date':today,'subjects':subjects})
+        return render(request,'mockTest.html',{'queses' : queses,'stmts':T_F_queses,'longques':longques,'date':today,'subjects':subjects})
 
 def courses(request):
     with connection.cursor() as cursor:
