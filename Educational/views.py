@@ -150,7 +150,7 @@ def mockTest(request):
         'selected_value': selected_value,
         }
 
-        return render(request,'mockTest.html',{'queses' : queses,'stmts':T_F_queses,'longques':longques,'date':today,'subjects':subjects})
+        return render(request,'mockTest.html',{'queses' : ques_data,'stmts':T_F_queses,'longques':longques,'date':today,'subjects':subjects})
     else:
         # print(queses)
         return render(request,'mockTest.html',{'queses' : queses,'stmts':T_F_queses,'longques':longques,'date':today,'subjects':subjects})
