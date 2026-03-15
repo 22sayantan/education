@@ -54,43 +54,18 @@
   </head>
   <body>
     <div class="flex ">
-      <div class="filter-area bg-white h-[12rem] w-fit p-4 rounded-[10px] sticky top-0 ml-2 border-2 border-gray-300">
+      <div class="filter-area bg-white h-[7rem] w-fit p-4 rounded-[10px] sticky top-0 ml-2 border-2 border-gray-300">
       <form action="" method="POST">
         {% csrf_token %}
-        <label for="standard">standard</label>
-        <select name="" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
-          <option value="">class 9</option>
-          <option value="">class 10</option>
-          <option value="">class 11</option>
-          <option value="">class 12</option>
-        </select>
-
-        <br>
-
         <label for="subject">subject</label>
         <select name="drop-down-value-sub" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
           {% for sub in subjects %}
           <option value="{{sub.0}}">{{sub.0}}</option>
           {% endfor %}
         </select>
-
-        <br>
-
-        <label for="">Level</label>
-        <select name="drop-down-value-level" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
-          <option value="easy">Easy</option>
-          <option value="mid">Midium</option>
-          <option value="hard">Hard</option>
-        </select>
-
-        <br>
-
         <center>
-          <button type="submit" class="cursor-pointer bg-green-500 p-2 text-white font-bold rounded-[4px]">show</button>
+          <button type="submit" class="cursor-pointer bg-green-500 p-2 text-white font-bold rounded-[4px] mt-3">filter</button>
         </center>
-
-        <br>
-
       </form>
     </div>
     <div class="Question-paper">
