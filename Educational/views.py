@@ -113,7 +113,7 @@ def mockTest(request):
         T_F_queses = cursor.fetchall()
         cursor.close()
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * from Educational_longques order by random() limit 1;")
+        cursor.execute("SELECT * from Educational_longques order by random() limit 10;")
         longques = cursor.fetchall()
         cursor.close()
         
