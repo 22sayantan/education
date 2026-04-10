@@ -57,10 +57,16 @@
       <div class="filter-area bg-white h-[7rem] w-fit p-4 rounded-[10px] sticky top-0 ml-2 border-2 border-gray-300">
       <form action="" method="POST">
         {% csrf_token %}
-        <label for="subject">subject</label>
+        <label for="subject">MCQ-Subject</label>
         <select name="drop-down-value-sub" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
           {% for sub in subjects %}
           <option value="{{sub.0}}">{{sub.0}}</option>
+          {% endfor %}
+        </select>
+        <label for="subject">LAQ-Subject</label>
+        <select name="drop-down-value-sub-L" id="" class="h-[2rem] w-[5rem] border-1 border-gray-400 rounded-[8px]">
+          {% for Lsub in Lsubjects %}
+          <option value="{{Lsub.0}}">{{Lsub.0}}</option>
           {% endfor %}
         </select>
         <center>
@@ -101,6 +107,52 @@
         {% endfor %}
       </div>
 
+      <div class="mcq-id-chart grid justify-around">
+        <h4 class="bg-[cyan] w-12 pl-1">MCQ</h4>
+        <table>
+       <thead>
+           <tr>
+              {% for q in queses %}
+              <th class="border border-gray-300 w-10">{{forloop.counter}}</th>
+              {% endfor %}
+            </tr>
+       </thead>
+         <tbody>
+           <tr>
+              {% for q in queses %}
+              <td class="border border-gray-300 text-center">{{q.0}}</td>
+              {% endfor %}
+            </tr>            
+           <tr>
+              {% for q in queses %}
+              <td class="border border-gray-300 h-6"></td>
+              {% endfor %}
+            </tr>            
+         </tbody>
+        </table>
+        <table>
+          <h4 class="bg-[cyan] w-fit p-1">2 marks</h4>
+       <thead>
+           <tr>
+              {% for lnq in longques %}
+              <th class="border border-gray-300 w-10 text-center">{{forloop.counter}}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {% for lnq in longques %}
+              <td class="border border-gray-300 text-center">{{lnq.0}}</td>
+              {% endfor %}
+            </tr>
+            <tr>
+              {% for lnq in longques %}
+              <td class="border border-gray-300 h-6"></td>
+              {% endfor %}
+            </tr>
+         </tbody>
+        </table>
+      </div>
       <div class="print_btn">
         <button onclick="window.print()" class="w-16 h-10 rounded-xl cursor-pointer bg-[cyan]">Print</button>
       </div>

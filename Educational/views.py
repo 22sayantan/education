@@ -121,39 +121,41 @@ def mockTest(request):
         cursor.execute("SELECT distinct subject from Educational_mcq;")
         subjects=cursor.fetchall()
         cursor.close()
+
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT distinct subject from Educational_longques;")
+        Lsubjects=cursor.fetchall()
+        cursor.close()
     
     if request.method == 'POST':
         selected_sub = request.POST.get('drop-down-value-sub')
-        print(selected_sub)
+        L_selected_sub = request.POST.get('drop-down-value-sub-L')
         filtered_ques = list(MCQ.objects.filter(subject=selected_sub))
-        print(len(filtered_ques))
+        L_filtered_ques = list(LongQues.objects.filter(subject=L_selected_sub))
 
         random_items = random.sample(filtered_ques,8)
-        print(random_items)
+        L_random_items = random.sample(L_filtered_ques,5)
+
         ques_data = []
         for item in random_items:
             item_dict = model_to_dict(item)
             item_tuple = tuple(item_dict.values())
             ques_data.append(item_tuple)
-            # print(item_tuple)
         print(ques_data)
-        '''
-        del_id = request.POST.get('delete_id')
-        if del_id:
-            with connection.cursor() as cursor:
-                cursor.execute("DELETE FROM Educational_mcq WHERE id = %s",[del_id])
-                cursor.execute("WITH ordered AS ( SELECT id, ROW_NUMBER() OVER (ORDER BY id) AS rn FROM Educational_mcq ) UPDATE Educational_mcq SET id = ( SELECT rn FROM ordered WHERE ordered.id = Educational_mcq.id );")
-                cursor.execute("DELETE FROM sqlite_sequence WHERE name='Educational_mcq';")
-        '''
 
+        L_ques_data = []
+        for L_item in L_random_items:
+            L_item_dict = model_to_dict(L_item)
+            L_item_tuple = tuple(L_item_dict.values())
+            L_ques_data.append(L_item_tuple)
+        
         context = {
         'selected_value': selected_value,
         }
-
-        return render(request,'mockTest.html',{'queses' : ques_data,'stmts':T_F_queses,'longques':longques,'date':today,'subjects':subjects})
+        return render(request,'mockTest.html',{'queses' : ques_data,'stmts':T_F_queses,'longques':L_ques_data,'date':today,'subjects':subjects,'Lsubjects':Lsubjects})
     else:
         # print(queses)
-        return render(request,'mockTest.html',{'queses' : queses,'stmts':T_F_queses,'longques':longques,'date':today,'subjects':subjects})
+        return render(request,'mockTest.html',{'queses' : queses,'stmts':T_F_queses,'longques':longques,'date':today,'subjects':subjects,'Lsubjects':Lsubjects})
 
 def courses(request):
     with connection.cursor() as cursor:
