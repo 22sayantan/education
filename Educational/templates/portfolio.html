@@ -3,13 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+      @layer base {
+        h1 {
+          @apply text-4xl font-extrabold mb-4;
+          text-transform: capitalize;
+        }
+        h2 {
+          @apply text-2xl font-bold mb-3;
+          text-transform: capitalize;
+        }
+        h4{
+          @apply text-[15px] font-bold capitalize text-[gray];
+        }
+        ul{
+          @apply list-disc ml-5 grid grid-cols-2 capitalize;
+        }
+        button{
+          @apply border-3 border-dashed border-[green] bg-[lightgreen] w-[6rem] rounded-[5px] text-[darkgreen] font-bold;
+        }
+      }
+    </style>
 
     <title>Profile</title>
   </head>
-  <body>
-    <h1>Sayantan Dolui</h1>
-    <h4>business analyst</h4>
+  <body class="font-[times-new-roman]">
+    <h1 class="text-4xl font-bold font-[times-new-roman]">Sayantan Dolui</h1>
+    <h4>
+      business analyst
+    </h4>
     <hr />
     <h2>profile</h2>
     <div class="profile">
@@ -31,7 +55,7 @@
     <hr />
     <h2>work experience</h2>
     <div class="work">
-      <div>
+      <div class="flex">
         <h4>business management</h4>
         &emsp;<time datetime="">2018-2020</time>
       </div>
@@ -41,7 +65,7 @@
         ipsa!
       </p>
     </div>
-    <hr>
+    <hr />
     <h2>Skills</h2>
     <div>
       <ul>
@@ -49,11 +73,25 @@
         <li>django</li>
         <li>numpy</li>
         <li>openCV</li>
+        <li>computer networks</li>
+        <li>Operating System</li>
+        <li>Data Base Management System</li>
+        <li>flask</li>
+        <li>streamlit</li>
+        <li>Flutter</li>
+        <li>Economics</li>
+        <li>Business Management</li>
+        <li>Robotics</li>
+        <li>basic Finance</li>
       </ul>
     </div>
-    <hr>
+    <hr />
     <h2>academic</h2>
     <h4>Diploma in Mechanical Engineering &emsp; [2015-2018]</h4>
     <h4>B.Tech in Computer Science Engineering &emsp; [2018-2022]</h4>
+
+    <div class="print-btn">
+      <button type="submit" onclick="window.print()">Print</button>
+    </div>
   </body>
 </html>
