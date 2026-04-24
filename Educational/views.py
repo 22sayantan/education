@@ -79,7 +79,7 @@ def newQues(request):
             marks = request.POST.get('marks')
             subject = request.POST.get('subject')
             print(ques,ans1,ans2,ans3,ans4,crrctAns,marks)
-            MCQ_data = MCQ(ques=ques,ans1=ans1,ans2=ans2,ans3=ans3,ans4=ans4,crrctAns=crrctAns,marks=marks,subject = subject)
+            MCQ_data = MCQ(Question=ques,Option_1=ans1,Option_2=ans2,Option_3=ans3,Option_4=ans4,Answers=crrctAns,marks=marks,subject = subject)
             MCQ_data.save()
             print('upload to db successfully!!!')
         if QType == 'true-false':
